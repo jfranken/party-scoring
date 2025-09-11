@@ -36,7 +36,8 @@ module.exports = (srv) => {
         paperCups,
         paperPlates,
         disposableCutlery,
-        partyRequests_ID: ID
+        partyRequests: { ID }  
+
       })
     );
   });

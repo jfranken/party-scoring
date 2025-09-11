@@ -58,7 +58,6 @@ annotate partyPlanningSrv.PartyRequests with {
     drinkOptions @Common.ValueListWithFixedValues;
     extraServices @Common.ValueListWithFixedValues;
 };
-
 // --- Filterfelder ---
 annotate partyPlanningSrv.PartyRequests with @UI.SelectionFields: [
     partyReason_code, date, location, adults, includeChildren, children,
@@ -97,9 +96,9 @@ annotate partyPlanningSrv.PartyRequests with @UI.FieldGroup #Main: {
           }
         },
         { $Type: 'UI.DataField', Value: totalGuests, ![@UI.Hidden]: true },
-        { $Type: 'UI.DataField', Value: foodOptions_code, Label: 'Food Options', ValueHelp: '@PartyRequestsFoodOptionsCodeList', MultiSelect: true },
-        { $Type: 'UI.DataField', Value: drinkOptions_code, Label: 'Drink Options', ValueHelp: '@PartyRequestsDrinkOptionsCodeList', MultiSelect: true },
-        { $Type: 'UI.DataField', Value: extraServices_code, Label: 'Extra Services', ValueHelp: '@PartyRequestsExtraServicesCodeList', MultiSelect: true }
+        { $Type: 'UI.DataField', Value: foodOptions, Label: 'Food Options', ValueHelp: '@PartyRequestsFoodOptionsCodeList', MultiSelect: true },
+        { $Type: 'UI.DataField', Value: drinkOptions, Label: 'Drink Options', ValueHelp: '@PartyRequestsDrinkOptionsCodeList', MultiSelect: true },
+        { $Type: 'UI.DataField', Value: extraServices, Label: 'Extra Services', ValueHelp: '@PartyRequestsExtraServicesCodeList', MultiSelect: true }
     ]
 };
 
