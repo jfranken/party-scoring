@@ -1,0 +1,283 @@
+{
+    "namespace": "partyPlanning",
+    "entities": [
+        {
+            "name": "PartyRequests",
+            "label": "Party Request",
+            "associations": [
+                {
+                    "name": "calculations",
+                    "target": "Calculations",
+                    "multiplicity": "many",
+                    "backAssociation": "partyRequests"
+                }
+            ],
+            "labelPlural": "Party Requests",
+            "elements": [
+                {
+                    "name": "ID",
+                    "type": "UUID",
+                    "key": true,
+                    "label": ""
+                },
+                {
+                    "name": "partyReason",
+                    "type": "String(50)",
+                    "label": "Party Reason",
+                    "additionalInfo": "Dropdown options: Birthday, Wedding, Corporate Event, Private Gathering, Festival",
+                    "key": false,
+                    "essentialElement": true,
+                    "values": [
+                        "Birthday",
+                        "Wedding",
+                        "Corporate Event",
+                        "Private Gathering",
+                        "Festival"
+                    ],
+                    "hasFixedValuesList": true,
+                    "hasColorsOrCriticality": false,
+                    "reason": "The values for partyReason (Birthday, Wedding, Corporate Event, Private Gathering, Festival) are generally neutral as they represent different types of events without inherent positive or negative connotations.",
+                    "mapping": []
+                },
+                {
+                    "name": "date",
+                    "type": "Date",
+                    "label": "Date",
+                    "additionalInfo": "Date picker for selecting the event date",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "location",
+                    "type": "String(100)",
+                    "label": "Location",
+                    "additionalInfo": "Text input for specifying the event location",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "adults",
+                    "type": "Integer",
+                    "label": "Adults",
+                    "additionalInfo": "Number input for specifying the number of adults",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "includeChildren",
+                    "type": "String(50)",
+                    "label": "Include Children",
+                    "additionalInfo": "Checkbox to indicate if children are included",
+                    "key": false,
+                    "essentialElement": false,
+                    "values": [
+                        "true",
+                        "false"
+                    ],
+                    "hasFixedValuesList": true,
+                    "hasColorsOrCriticality": false,
+                    "reason": "The includeChildren property is a boolean indicating whether children are included in the party. This is a neutral property as it does not imply any positive or negative aspect.",
+                    "mapping": []
+                },
+                {
+                    "name": "children",
+                    "type": "Integer",
+                    "label": "Children",
+                    "additionalInfo": "Number input for specifying the number of children, visible only if includeChildren is true",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "totalGuests",
+                    "type": "Integer",
+                    "label": "Total Guests",
+                    "additionalInfo": "Read-only field automatically calculated as the sum of adults and children",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "foodOptions",
+                    "type": "String(100)",
+                    "label": "Food Options",
+                    "additionalInfo": "Multi-select checkbox group options: Vegan, Vegetarian, Meat/Fish, Fingerfood, Dessert buffet",
+                    "key": false,
+                    "essentialElement": false,
+                    "values": [
+                        "Vegan",
+                        "Vegetarian",
+                        "Meat/Fish",
+                        "Fingerfood",
+                        "Dessert buffet"
+                    ],
+                    "hasFixedValuesList": true,
+                    "hasColorsOrCriticality": false,
+                    "reason": "The foodOptions property includes various dietary preferences and types of food, which are neutral as they cater to different tastes and dietary needs without any inherent positive or negative connotations.",
+                    "mapping": []
+                },
+                {
+                    "name": "drinkOptions",
+                    "type": "String(100)",
+                    "label": "Drink Options",
+                    "additionalInfo": "Multi-select checkbox group options: Soft drinks, Beer, Wine, Cocktails",
+                    "key": false,
+                    "essentialElement": false,
+                    "values": [
+                        "Soft drinks",
+                        "Beer",
+                        "Wine",
+                        "Cocktails"
+                    ],
+                    "hasFixedValuesList": true,
+                    "hasColorsOrCriticality": false,
+                    "reason": "The drinkOptions property includes different types of beverages, which are neutral as they cater to different preferences without any inherent positive or negative connotations.",
+                    "mapping": []
+                },
+                {
+                    "name": "extraServices",
+                    "type": "String(100)",
+                    "label": "Extra Services",
+                    "additionalInfo": "Multi-select checkbox group options: DJ, Decoration, Service staff",
+                    "key": false,
+                    "essentialElement": false,
+                    "values": [
+                        "DJ",
+                        "Decoration",
+                        "Service staff"
+                    ],
+                    "hasFixedValuesList": true,
+                    "hasColorsOrCriticality": false,
+                    "reason": "The extraServices property includes additional services that can be added to a party, which are neutral as they are optional enhancements without any inherent positive or negative connotations.",
+                    "mapping": []
+                }
+            ]
+        },
+        {
+            "name": "Calculations",
+            "label": "Calculation",
+            "associations": [
+                {
+                    "name": "partyRequests",
+                    "target": "PartyRequests",
+                    "multiplicity": "one",
+                    "isComposition": false
+                }
+            ],
+            "labelPlural": "Calculations",
+            "elements": [
+                {
+                    "name": "ID",
+                    "type": "UUID",
+                    "key": true,
+                    "label": ""
+                },
+                {
+                    "name": "plates",
+                    "type": "Integer",
+                    "label": "Plates",
+                    "additionalInfo": "Calculated result for the number of plates needed",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "glasses",
+                    "type": "Integer",
+                    "label": "Glasses",
+                    "additionalInfo": "Calculated result for the number of glasses needed",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "cutlery",
+                    "type": "Integer",
+                    "label": "Cutlery",
+                    "additionalInfo": "Calculated result for the number of cutlery sets needed",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "paperCups",
+                    "type": "Integer",
+                    "label": "Paper Cups",
+                    "additionalInfo": "Calculated result for the number of paper cups needed",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "paperPlates",
+                    "type": "Integer",
+                    "label": "Paper Plates",
+                    "additionalInfo": "Calculated result for the number of paper plates needed",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "disposableCutlery",
+                    "type": "Integer",
+                    "label": "Disposable Cutlery",
+                    "additionalInfo": "Calculated result for the number of disposable cutlery sets needed",
+                    "key": false,
+                    "essentialElement": false
+                }
+            ]
+        }
+    ],
+    "service": {
+        "name": "partyPlanningSrv",
+        "path": "srv/service.cds"
+    },
+    "applications": [
+        {
+            "pages": [
+                {
+                    "type": "ListReport",
+                    "entityType": "PartyRequests",
+                    "listReportContent": {
+                        "loadDataOnAppLaunch": "Enabled",
+                        "tables": [
+                            {
+                                "title": "Party Requests Overview",
+                                "id": "PartyRequestsTable",
+                                "baseEntityType": "PartyRequests",
+                                "columns": [
+                                    "partyReason",
+                                    "date",
+                                    "location",
+                                    "adults",
+                                    "children",
+                                    "totalGuests",
+                                    "foodOptions",
+                                    "drinkOptions",
+                                    "extraServices"
+                                ]
+                            }
+                        ],
+                        "filters": [
+                            "partyReason",
+                            "date",
+                            "location",
+                            "adults",
+                            "includeChildren",
+                            "children",
+                            "foodOptions",
+                            "drinkOptions",
+                            "extraServices"
+                        ]
+                    }
+                },
+                {
+                    "type": "ObjectPage",
+                    "entityType": "PartyRequests",
+                    "objectPageContent": {
+                        "tableSectionAssociations": [
+                            "calculations"
+                        ],
+                        "sections": [],
+                        "tabs": [],
+                        "chartSections": []
+                    }
+                }
+            ],
+            "name": "partyRequestApp"
+        }
+    ]
+}

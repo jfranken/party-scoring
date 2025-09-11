@@ -1,0 +1,134 @@
+{
+    "_version": "1.73.1",
+    "sap.app": {
+        "id": "partyrequestapp",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.18.6",
+            "toolsId": "8f1da508-652b-44a8-a586-d6b4f90c85be"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/odata/v4/party-planning-srv/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.136.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "partyrequestapp.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "PartyRequestsList",
+                    "target": "PartyRequestsList"
+                },
+                {
+                    "pattern": "PartyRequests({key}):?query:",
+                    "name": "PartyRequestsObjectPage",
+                    "target": "PartyRequestsObjectPage"
+                }
+            ],
+            "targets": {
+                "PartyRequestsList": {
+                    "type": "Component",
+                    "id": "PartyRequestsList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/PartyRequests",
+                            "variantManagement": "Page",
+                            "initialLoad": "Enabled",
+                            "navigation": {
+                                "PartyRequests": {
+                                    "detail": {
+                                        "route": "PartyRequestsObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "PartyRequestsObjectPage": {
+                    "type": "Component",
+                    "id": "PartyRequestsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/PartyRequests"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

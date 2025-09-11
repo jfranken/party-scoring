@@ -1,0 +1,6 @@
+ID,partyReason_code,date,location,adults,includeChildren,children,totalGuests
+36384e8b-48bf-4325-8274-a4f06da49405,BIRTHDAY,2025-09-01,House,5,true,2,7
+af425a80-84d7-47aa-acda-770d42238959,WEDDING,2025-10-15,Garden,100,false,0,100
+c80678a8-5c5a-491c-aaf8-1eba263d863f,MEETING,2025-11-05,Office,60,true,15,75
+ba536c6c-2844-44dd-8b73-db495d12ba70,BIRTHDAY,2025-12-20,Club,18,false,0,18
+0a906e14-5cae-42a4-8816-f142acf17f17,CONFERENCE,2026-01-10,Hotel,200,false,0,200
